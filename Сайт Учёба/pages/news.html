@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Объявления</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <img src="C:\Users\sheca\OneDrive\Desktop\Сайт Учёба\images\Lis1.png" alt="Логотип" class="logo">
+    <h1>Веб - технологии</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="about.html">О себе</a></li>
+        <li><a href="resume.html">Резюме</a></li>
+        <li><a href="portfolio.html">Портфолио</a></li>
+        <li><a href="competencies.html">Компетенции</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="gallery.html">Галерея</a></li>
+        <li><a href="news.html">Объявления</a></li>
+    </ul>
+</nav>
+
+<div class="main">
+
+    <h1>Создание объявления</h1>
+
+    <form class="contact-form" id="ad-form">
+        <div class="row">
+            <label for="title">Заголовок:</label>
+            <input type="text" name="title" id="title" required>
+        </div>
+
+        <p>Текст объявления:</p>
+        <textarea name="description" id="description" rows="5" required></textarea>
+
+        <div class="row">
+            <label for="author">Автор объявления:</label>
+            <input type="text" name="author" id="author" required>
+        </div>
+
+        <div class="row">
+            <label for="image">Изображение:</label>
+            <input type="file" name="image" id="image">
+        </div>
+
+        <input type="submit" value="Отправить объявление">
+    </form>
+
+    <div id="news-feed" class="news-feed"></div>
+
+</div>
+
+<footer>
+    Сайт разработан в рамках учебной работы. Copyright © 2026
+</footer>
+
+<script>
+    const form = document.getElementById('ad-form');
+    const newsFeed = document.getElementById('news-feed');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const title = document.getElementById('title').value;
+        const text = document.getElementById('description').value;
+        const author = document.getElementById('author').value;
+        const card = document.createElement('div');
+        card.className = 'news-card';
+        const titleEl = document.createElement('h3');
+        titleEl.textContent = title;
+        const textEl = document.createElement('p');
+        textEl.textContent = text;
+        const authorEl = document.createElement('small');
+        authorEl.textContent = 'Автор: ' + author;
+        const dateEl = document.createElement('span');
+        dateEl.className = 'news-date';
+        const now = new Date();
+        dateEl.textContent = 'Дата публикации: ' + now.toLocaleDateString('ru-RU');
+        card.appendChild(titleEl);
+        card.appendChild(textEl);
+        card.appendChild(authorEl);
+        card.appendChild(dateEl);
+        newsFeed.prepend(card);
+        form.reset();
+    });
+</script>
+
+</body>
+</html>
